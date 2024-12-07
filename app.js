@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-const mongooseLink = "mongodb+srv://MOSA:ma741369@miuniverse.uqftmxz.mongodb.net/"
+// const mongooseLink = "mongodb+srv://mosa:mosa@cluster0.gaqfjk2.mongodb.net/?retryWrites=true&w=majority";
+const mongooseLink = "mongodb+srv://mosa:mosa123456@cluster0.gaqfjk2.mongodb.net/";
 mongoose.connect(mongooseLink);
 mongoose.connection.on("connected", () => {
   console.log("mongo connected");
@@ -21,30 +22,30 @@ mongoose.connection.on("connected", () => {
 // });
 
 app.get("/app", (req, res) => {
-    res.status(200).json({
-      message: "yes",
-      batata: "5kg",
-    });
-  }
+  res.status(200).json({
+    message: "yes",
+    batata: "5kg",
+  });
+}
 );//example
 
-const deleteAllUser = async()=>{
+const deleteAllUser = async () => {
   UserModule.deleteMany({})
-  .then(() => {
-    console.log('All users deleted');
-  })
-  .catch((error) => {
-    console.error('Error deleting users:', error);
-  });
+    .then(() => {
+      console.log('All users deleted');
+    })
+    .catch((error) => {
+      console.error('Error deleting users:', error);
+    });
 }
 // deleteAllUser()
 
 app.post("/test", (req, res) => {
-  try{
+  try {
     res.status(200).json(req.body)
     // console.log(req.body);
-  }catch(e){
-    res.status(500).json({message:e.message})
+  } catch (e) {
+    res.status(500).json({ message: e.message })
     console.log(e.message);
   }
 })
@@ -54,4 +55,4 @@ app.post("/test", (req, res) => {
 console.log('wait');
 // app.use("/");
 
-module.exports=app;
+module.exports = app;
