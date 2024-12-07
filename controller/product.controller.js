@@ -3,11 +3,11 @@ const productModule = require("../model/product.model");
 const createProduct = async (req, res) => {
     try {
         const { name, image, price } = req.body;
-        const product = await productModule.create(
+        const product = await productModule.create({
             name,
             image,
             price
-        );
+        });
         res.status(200).json({
             product,
             success: true,
@@ -23,7 +23,7 @@ const createProduct = async (req, res) => {
 const findProduct = async (req, res) => {
     try {
         const { name } = req.body;
-        const product = await productModule.find({name});
+        const product = await productModule.find({ name });
         res.status(200).json({
             product,
             success: true,
@@ -39,7 +39,7 @@ const findProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         const { name } = req.body;
-        const product = await productModule.delete({name});
+        const product = await productModule.delete({ name });
         res.status(200).json({
             product,
             success: true,

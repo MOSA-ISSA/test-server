@@ -5,11 +5,11 @@ const userModule = require("../model/user.model");
 const createUser = async (req, res) => {
     try {
         const { name, image, price } = req.body;
-        const user = await userModule.create(
+        const user = await userModule.create({
             name,
             image,
             price
-        );
+        });
         res.status(200).json({
             user,
             success: true,
